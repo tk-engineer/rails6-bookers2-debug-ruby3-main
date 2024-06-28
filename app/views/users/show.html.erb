@@ -1,0 +1,22 @@
+<div class='container px-5 px-sm-0'>
+  <div class='row'>
+    <div class='col-md-3'>
+      <h2>User info</h2>
+      <%= render 'info', user: @user %>
+      <% if current_user.following?(@user) %>
+        <%= link_to "フォロー外す", user_relationshops_path(@user.id), method: :delete, class: "btn btn-sm btn-success" %>
+        <% if @user.following?(current_user) %>
+          <%= link_to "chatを始める", chat_path(@user.id) %>
+        <% end %>
+      <% else %>
+        <%= link_to "フォローする", user_relationshops_path(@user.id), method: :post, class: "btn btn-sm btn-success" %>
+      <% end %>
+      <h2 class="mt-3">New book</h2>
+      <%= render 'books/form', book: @book %>
+    </div>
+    <div class='col-md-8 offset-md-1'>
+      <h2>Books</h2>
+      <%= render 'books/index',books: @books %>
+    </div>
+  </div>
+</div>

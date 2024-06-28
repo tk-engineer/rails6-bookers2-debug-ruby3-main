@@ -1,0 +1,10 @@
+<h2><%= @other_user.name %>さんとのチャット</h2>
+
+<% @messages.each do |message| %>
+  <%= message.content %><br>
+<% end %>
+
+<%= form_with model: @message, url: new_chat_path(@other_user.id), local: true do |f| %>
+  <%= f.text_field :content %>
+  <%= f.submit %>
+<% end %>
